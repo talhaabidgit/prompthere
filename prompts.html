@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompts - PromptHere</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- ==============================
+       Header / Navigation
+  ============================== -->
+  <header class="header">
+    <div class="container nav">
+
+      <div class="logo">
+        <a href="index.html">PromptHere</a>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="prompts.html" class="active">Prompts</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="terms&services.html">Terms &amp; Services</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- ==============================
+       Prompt Library Section
+  ============================== -->
+  <section class="page">
+    <div class="container">
+
+      <h1>Prompt Library</h1>
+      <br>
+      <!-- Search Bar -->
+      <input id="search" placeholder="Search prompts...">
+
+      <!-- Category Filter -->
+      <select id="category">
+        <option value="">All Categories</option>
+        <option value="Study">Study</option>
+        <option value="Image">Image Editing</option>
+        <option value="business">Business</option>
+        <option value="Market">Market</option>
+        <option value="Logic">Logic</option>
+        <!-- <option value="Analysis & Reporting">Analysis &amp; Reporting</option>
+        <option value="Information Synthesis">Information Synthesis</option>
+        <option value="Scheduling">Scheduling</option>
+        <option value="Writing Support">Writing Support</option> -->
+      </select>
+      <br>
+      <h1 style="color: red;">All The Prompt Cards Are Temporary And Used For Testing Purpose Only !</h1>
+      
+      <!-- Prompt Cards (injected by script.js) -->
+      <div id="prompt-grid" class="prompt-grid"></div>
+
+      <button id="load-more" class="load-more">Load More</button>
+
+    </div>
+  </section>
+
+
+  <!-- ==============================
+       Footer
+  ============================== -->
+  <footer class="footer">
+    <p>© <span id="year"></span> Prompthere</p>
+  </footer>
+
+
+  <!-- Main site script -->
+  <script src="script.js"></script>
+
+</body>
+</html>

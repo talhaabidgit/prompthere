@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PromptHere - Free AI Prompt Library</title>
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container nav">
+
+      <div class="logo">
+        <a href="index.html">PromptHere <P style="color: red;">Beta-1.0</P> </a>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="prompts.html">Prompts</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="terms&services.html">Terms & Services</a></li>
+        </ul>
+      </nav>
+
+      <!-- Theme Toggle -->
+      <label class="theme-toggle">
+        <i class="fa-solid fa-sun"></i>
+        <input type="checkbox" id="theme-toggle">
+        <i class="fa-solid fa-moon"></i>
+      </label>
+
+    </div>
+  </header>
+
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container hero-content">
+
+      <h1>The Ultimate Free AI Prompt Library</h1>
+
+      <!-- Typewriter text -->
+      <p id="hero-text"></p>
+
+      <a href="prompts.html" class="btn">Explore Prompts</a>
+
+    </div>
+  </section>
+
+
+  <!-- INFO POPUP -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+
+      <span id="close-popup">&times;</span>
+
+      <p>
+        Welcome! Small ads help keep PromptHere alive and free for everyone.
+      </p>
+
+    </div>
+  </div>
+
+
+  <!-- FEATURES -->
+  <section class="features">
+
+    <div class="container">
+
+      <h2 class="section-title">Why PromptHere?</h2>
+
+      <div class="cards">
+
+        <div class="card">
+          <i class="fa-solid fa-bolt"></i>
+          <h3>Instant Prompts</h3>
+          <p>Copy powerful prompts instantly and use them in your AI tools.</p>
+        </div>
+
+        <div class="card">
+          <i class="fa-solid fa-brain"></i>
+          <h3>High Quality</h3>
+          <p>All prompts are curated to generate better responses from AI.</p>
+        </div>
+
+        <div class="card">
+          <i class="fa-solid fa-copy"></i>
+          <h3>One Click Copy</h3>
+          <p>Copy prompts in one click and start using them immediately.</p>
+        </div>
+
+        <div class="card">
+          <i class="fa-solid fa-lock-open"></i>
+          <h3>100% Free</h3>
+          <p>All prompts are free. Small ads keep this project alive.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- BEST PROMPTS -->
+  <section class="best-prompts">
+
+    <div class="container">
+
+      <h2>🔥 Best AI Prompts</h2>
+      <p>Top prompts loved by creators.</p>
+
+      <div id="bestPrompts" class="prompt-grid"></div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>© <span id="year"></span> PromptHere</p>
+    </div>
+  </footer>
+
+
+  <!-- MAIN JS -->
+  <script src="script.js"></script>
+
+</body>
+</html>
