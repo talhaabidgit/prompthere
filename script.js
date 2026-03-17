@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   const heroElement = document.getElementById("hero-text");
-  const TYPING_SPEED = 50;          // ms per character
-  const MESSAGE_DELAY = 2000;       // ms pause after each full message
+  const TYPING_SPEED  = 50;     // ms per character
+  const MESSAGE_DELAY = 2000;   // ms pause after each full message
 
   let heroIndex = 0;
   let charIndex = 0;
@@ -70,24 +70,61 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  typeHeroMessage(); // Kick off the typewriter
+  // Only run typewriter if the hero element exists (index page only)
+  if (heroElement) typeHeroMessage();
 
 
   // ----------------------------
   // Popup — Show Only Once
   // ----------------------------
-  const popup = document.getElementById("popup");
+  const popup        = document.getElementById("popup");
   const closePopupBtn = document.getElementById("close-popup");
 
-  // Show popup only if not already seen
-  if (!localStorage.getItem("popupShown")) {
-    popup.style.display = "flex";
-    localStorage.setItem("popupShown", "true");
+  if (popup && closePopupBtn) {
+    // Show popup only if not already seen
+    if (!localStorage.getItem("popupShown")) {
+      popup.style.display = "flex";
+      localStorage.setItem("popupShown", "true");
+    }
+
+    closePopupBtn.addEventListener("click", () => {
+      popup.style.display = "none";
+    });
   }
 
-  closePopupBtn.addEventListener("click", () => {
-    popup.style.display = "none";
-  });
+
+  // ----------------------------
+  // Mobile Hamburger Drawer
+  // ----------------------------
+  const hamburgerBtn  = document.getElementById("hamburger");
+  const drawer        = document.getElementById("drawer");
+  const drawerOverlay = document.getElementById("drawer-overlay");
+  const drawerClose   = document.getElementById("drawer-close");
+
+  // Open drawer
+  function openDrawer() {
+    drawer.classList.add("open");
+    drawerOverlay.classList.add("open");
+    document.body.style.overflow = "hidden"; // prevent background scroll
+  }
+
+  // Close drawer
+  function closeDrawer() {
+    drawer.classList.remove("open");
+    drawerOverlay.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  if (hamburgerBtn) hamburgerBtn.addEventListener("click", openDrawer);
+  if (drawerClose)  drawerClose.addEventListener("click", closeDrawer);
+  if (drawerOverlay) drawerOverlay.addEventListener("click", closeDrawer);
+
+  // Also close drawer when a nav link inside it is clicked
+  if (drawer) {
+    drawer.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", closeDrawer);
+    });
+  }
 
 });
 
@@ -173,9 +210,9 @@ if (promptGrid) {
   // ----------------------------
   // Event Listeners
   // ----------------------------
-  searchInput.addEventListener("input",  () => renderPrompts());
+  searchInput.addEventListener("input",     () => renderPrompts());
   categorySelect.addEventListener("change", () => renderPrompts());
-  loadMoreBtn.addEventListener("click",  () => renderPrompts(false));
+  loadMoreBtn.addEventListener("click",     () => renderPrompts(false));
 
 
   // ----------------------------
