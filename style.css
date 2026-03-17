@@ -65,28 +65,171 @@ body {
   font-weight: 700;
   color: var(--text);
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-nav ul {
+/* Desktop nav */
+.desktop-nav ul {
   display: flex;
   gap: 25px;
   list-style: none;
 }
 
-nav a {
+.desktop-nav a {
   text-decoration: none;
   color: var(--text);
   transition: .3s;
 }
 
-nav a:hover {
+.desktop-nav a:hover {
   opacity: .6;
 }
 
-nav a.active {
+.desktop-nav a.active {
   font-weight: 600;
   border-bottom: 2px solid var(--text);
   padding-bottom: 4px;
+}
+
+/* Right side wrapper (toggle + hamburger) */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+
+/* =========================
+   THEME TOGGLE
+========================= */
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.theme-toggle input {
+  display: none;
+}
+
+.theme-toggle i {
+  color: var(--text);
+  opacity: .6;
+  transition: .3s;
+}
+
+.theme-toggle:hover i {
+  opacity: 1;
+}
+
+
+/* =========================
+   HAMBURGER BUTTON
+   (hidden on desktop)
+========================= */
+
+.hamburger {
+  display: none;           /* hidden on desktop */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: .3s;
+}
+
+
+/* =========================
+   MOBILE DRAWER
+========================= */
+
+/* Dark overlay behind drawer */
+.drawer-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1100;
+}
+
+.drawer-overlay.open {
+  display: block;
+}
+
+/* Drawer panel */
+.drawer {
+  position: fixed;
+  top: 0;
+  left: -55%;          /* hidden off-screen to the left */
+  width: 50%;
+  height: 100%;
+  background: var(--bg);
+  border-right: 1px solid var(--border);
+  z-index: 1200;
+  padding: 24px 20px;
+  transition: left .3s ease;
+  overflow-y: auto;
+}
+
+.drawer.open {
+  left: 0;             /* slide in */
+}
+
+/* Close (×) button inside drawer */
+.drawer-close {
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: var(--text);
+  display: block;
+  margin-left: auto;
+  margin-bottom: 24px;
+  line-height: 1;
+}
+
+/* Drawer nav links */
+.drawer ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.drawer ul li a {
+  display: block;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--text);
+  font-size: 1.05rem;
+  transition: opacity .2s;
+}
+
+.drawer ul li a:hover {
+  opacity: .6;
+}
+
+.drawer ul li a.active {
+  font-weight: 700;
 }
 
 
@@ -206,8 +349,13 @@ nav a.active {
   color: #fff;
   padding: 10px;
   font-size: .8rem;
-  overflow: auto;
   border-radius: 4px;
+  /* Fixed height — text scrolls inside, card stays same size */
+  max-height: 100px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .prompt-buttons {
@@ -236,7 +384,9 @@ nav a.active {
 ========================= */
 
 .view-btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 10px;
   padding: 8px 14px;
   background: #000;
@@ -279,6 +429,8 @@ nav a.active {
   border: 1px solid var(--border);
   border-radius: 5px;
   width: 100%;
+  background: var(--bg);
+  color: var(--text);
 }
 
 #category {
@@ -353,29 +505,33 @@ nav a.active {
 
 
 /* =========================
-   THEME TOGGLE
+   PAGE SECTIONS
+   (about, contact, terms, prompt detail)
 ========================= */
 
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 18px;
-  cursor: pointer;
+.page {
+  padding: 40px 0 60px;
 }
 
-.theme-toggle input {
-  display: none;
+.page h1 {
+  margin-bottom: 20px;
 }
 
-.theme-toggle i {
-  color: var(--text);
-  opacity: .6;
-  transition: .3s;
+.page p {
+  margin-bottom: 16px;
+  line-height: 1.7;
 }
 
-.theme-toggle:hover i {
-  opacity: 1;
+.container.small {
+  max-width: 720px;
+}
+
+.ads-note {
+  margin-top: 30px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--border);
+  font-size: 0.9rem;
+  opacity: 0.7;
 }
 
 
@@ -388,4 +544,90 @@ nav a.active {
   padding: 30px 0;
   border-top: 1px solid var(--border);
   text-align: center;
+}
+
+
+/* =========================
+   RESPONSIVE — TABLET
+   (max 768px)
+========================= */
+
+@media (max-width: 768px) {
+
+  /* Hide desktop nav, show hamburger */
+  .desktop-nav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  /* Shrink hero text */
+  .hero {
+    padding: 70px 0;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  /* Stack feature cards to 2 columns */
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Search full width, category full width */
+  #category {
+    max-width: 100%;
+  }
+
+  /* Prompt grid single column */
+  .prompt-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* =========================
+   RESPONSIVE — MOBILE
+   (max 480px)
+========================= */
+
+@media (max-width: 480px) {
+
+  .hero h1 {
+    font-size: 1.6rem;
+  }
+
+  /* Stack feature cards to 1 column */
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  /* Drawer takes 75% of screen on small phones */
+  .drawer {
+    width: 75%;
+    left: -80%;
+  }
+
+  /* Tighten up page padding */
+  .container {
+    padding: 0 14px;
+  }
+
+  .page {
+    padding: 24px 0 40px;
+  }
+
+  /* Prompt buttons stack vertically */
+  .prompt-buttons {
+    flex-direction: column;
+  }
+
 }
