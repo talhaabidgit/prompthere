@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Prompts - PromptHere</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-
 <body>
 
   <!-- ==============================
@@ -20,7 +19,7 @@
         <a href="index.html">PromptHere</a>
       </div>
 
-      <nav>
+      <nav class="desktop-nav">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="prompts.html" class="active">Prompts</a></li>
@@ -30,8 +29,34 @@
         </ul>
       </nav>
 
+      <div class="nav-right">
+        <label class="theme-toggle">
+          <i class="fa-solid fa-sun"></i>
+          <input type="checkbox" id="theme-toggle">
+          <i class="fa-solid fa-moon"></i>
+        </label>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
     </div>
   </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+  <nav class="drawer" id="drawer">
+    <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="prompts.html" class="active">Prompts</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="terms&services.html">Terms &amp; Services</a></li>
+    </ul>
+  </nav>
 
 
   <!-- ==============================
@@ -41,7 +66,7 @@
     <div class="container">
 
       <h1>Prompt Library</h1>
-      <br>
+
       <!-- Search Bar -->
       <input id="search" placeholder="Search prompts...">
 
@@ -58,9 +83,9 @@
         <option value="Scheduling">Scheduling</option>
         <option value="Writing Support">Writing Support</option> -->
       </select>
-      <br>
-      <h1 style="color: red;">All The Prompt Cards Are Temporary And Used For Testing Purpose Only !</h1>
-      
+
+      <h4 style="color: red;">All The Prompt Cards Are Temporary And Used For Testing Purpose Only !</h4>
+
       <!-- Prompt Cards (injected by script.js) -->
       <div id="prompt-grid" class="prompt-grid"></div>
 
@@ -74,11 +99,9 @@
        Footer
   ============================== -->
   <footer class="footer">
-    <p>© <span id="year"></span> Prompthere</p>
+    <p>© <span id="year"></span> PromptHere</p>
   </footer>
 
-
-  <!-- Main site script -->
   <script src="script.js"></script>
 
 </body>
