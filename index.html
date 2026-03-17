@@ -1,135 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PromptHere - Free AI Prompt Library</title>
-
-  <!-- Main CSS -->
   <link rel="stylesheet" href="style.css">
-
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-
 <body>
 
-  <!-- HEADER -->
+  <!-- ==============================
+       Header / Navigation
+  ============================== -->
   <header class="header">
     <div class="container nav">
 
+      <!-- Logo -->
       <div class="logo">
-        <a href="index.html">PromptHere <P style="color: red;">Beta-1.0</P> </a>
+        <a href="index.html">PromptHere <p style="color: red;">Beta-1.1</p></a>
       </div>
 
-      <nav>
+      <!-- Desktop Nav -->
+      <nav class="desktop-nav">
         <ul>
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="prompts.html">Prompts</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="terms&services.html">Terms & Services</a></li>
+          <li><a href="terms&services.html">Terms &amp; Services</a></li>
         </ul>
       </nav>
 
-      <!-- Theme Toggle -->
-      <label class="theme-toggle">
-        <i class="fa-solid fa-sun"></i>
-        <input type="checkbox" id="theme-toggle">
-        <i class="fa-solid fa-moon"></i>
-      </label>
+      <!-- Right side: Theme Toggle + Hamburger -->
+      <div class="nav-right">
 
+        <!-- Theme Toggle (visible on both) -->
+        <label class="theme-toggle">
+          <i class="fa-solid fa-sun"></i>
+          <input type="checkbox" id="theme-toggle">
+          <i class="fa-solid fa-moon"></i>
+        </label>
+
+        <!-- Hamburger Button (mobile only) -->
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
     </div>
   </header>
 
+  <!-- ==============================
+       Mobile Slide-in Drawer
+  ============================== -->
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+  <nav class="drawer" id="drawer">
+    <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="prompts.html">Prompts</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="terms&services.html">Terms &amp; Services</a></li>
+    </ul>
+  </nav>
 
-  <!-- HERO SECTION -->
+
+  <!-- ==============================
+       Hero Section
+  ============================== -->
   <section class="hero">
     <div class="container hero-content">
-
       <h1>The Ultimate Free AI Prompt Library</h1>
-
-      <!-- Typewriter text -->
       <p id="hero-text"></p>
-
       <a href="prompts.html" class="btn">Explore Prompts</a>
-
     </div>
   </section>
 
 
-  <!-- INFO POPUP -->
+  <!-- ==============================
+       Info Popup
+  ============================== -->
   <div id="popup" class="popup">
     <div class="popup-content">
-
       <span id="close-popup">&times;</span>
-
-      <p>
-        Welcome! Small ads help keep PromptHere alive and free for everyone.
-      </p>
-
+      <p>Welcome! Small ads help keep PromptHere alive and free for everyone.</p>
     </div>
   </div>
 
 
-  <!-- FEATURES -->
+  <!-- ==============================
+       Features Section
+  ============================== -->
   <section class="features">
-
     <div class="container">
-
       <h2 class="section-title">Why PromptHere?</h2>
-
       <div class="cards">
-
         <div class="card">
           <i class="fa-solid fa-bolt"></i>
           <h3>Instant Prompts</h3>
           <p>Copy powerful prompts instantly and use them in your AI tools.</p>
         </div>
-
         <div class="card">
           <i class="fa-solid fa-brain"></i>
           <h3>High Quality</h3>
           <p>All prompts are curated to generate better responses from AI.</p>
         </div>
-
         <div class="card">
           <i class="fa-solid fa-copy"></i>
           <h3>One Click Copy</h3>
           <p>Copy prompts in one click and start using them immediately.</p>
         </div>
-
         <div class="card">
           <i class="fa-solid fa-lock-open"></i>
           <h3>100% Free</h3>
           <p>All prompts are free. Small ads keep this project alive.</p>
         </div>
-
       </div>
-
     </div>
-
   </section>
 
 
-  <!-- BEST PROMPTS -->
+  <!-- ==============================
+       Best Prompts Section
+  ============================== -->
   <section class="best-prompts">
-
     <div class="container">
-
       <h2>🔥 Best AI Prompts</h2>
       <p>Top prompts loved by creators.</p>
-
       <div id="bestPrompts" class="prompt-grid"></div>
-
     </div>
-
   </section>
 
 
-  <!-- FOOTER -->
+  <!-- ==============================
+       Footer
+  ============================== -->
   <footer class="footer">
     <div class="container footer-content">
       <p>© <span id="year"></span> PromptHere</p>
@@ -137,7 +145,6 @@
   </footer>
 
 
-  <!-- MAIN JS -->
   <script src="script.js"></script>
 
 </body>
