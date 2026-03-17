@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About - PromptHere</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-
 <body>
 
   <!-- ==============================
@@ -20,7 +19,7 @@
         <a href="index.html">PromptHere</a>
       </div>
 
-      <nav>
+      <nav class="desktop-nav">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="prompts.html">Prompts</a></li>
@@ -30,8 +29,34 @@
         </ul>
       </nav>
 
+      <div class="nav-right">
+        <label class="theme-toggle">
+          <i class="fa-solid fa-sun"></i>
+          <input type="checkbox" id="theme-toggle">
+          <i class="fa-solid fa-moon"></i>
+        </label>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
     </div>
   </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+  <nav class="drawer" id="drawer">
+    <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="prompts.html">Prompts</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="terms&services.html">Terms &amp; Services</a></li>
+    </ul>
+  </nav>
 
 
   <!-- ==============================
@@ -47,42 +72,28 @@
         instantly — no accounts, no subscriptions, just pure productivity.
       </p>
 
-      <p><strong>Why Choose Prompt Here?</strong></p>
+      <p><strong>Why Choose PromptHere?</strong></p>
 
-      <p>
-        <strong>• Instant Access:</strong> Access thousands of ready-to-use prompts for ChatGPT, coding,
-        marketing, writing, business, and more — all in one place.
-      </p>
+      <p><strong>• Instant Access:</strong> Access thousands of ready-to-use prompts for ChatGPT, coding,
+        marketing, writing, business, and more — all in one place.</p>
 
-      <p>
-        <strong>• No Sign-Up Required:</strong> Jump straight into generating ideas without creating an
-        account. Come and use — simplicity at its best!
-      </p>
+      <p><strong>• No Sign-Up Required:</strong> Jump straight into generating ideas without creating an
+        account. Come and use — simplicity at its best!</p>
 
-      <p>
-        <strong>• Curated Quality:</strong> Every prompt is carefully curated to ensure it gives you
-        meaningful and actionable results.
-      </p>
+      <p><strong>• Curated Quality:</strong> Every prompt is carefully curated to ensure it gives you
+        meaningful and actionable results.</p>
 
-      <p>
-        <strong>• Multiple Categories:</strong> Organize your work efficiently using categories like study,
-        image editing, business, planning, roadmap, strategy, and other trending niches.
-      </p>
+      <p><strong>• Multiple Categories:</strong> Organize your work efficiently using categories like study,
+        image editing, business, planning, roadmap, strategy, and other trending niches.</p>
 
-      <p>
-        <strong>• Copy &amp; Use Instantly:</strong> One click and the prompt is ready to use in your AI
-        tools — no hassle, no delays.
-      </p>
+      <p><strong>• Copy &amp; Use Instantly:</strong> One click and the prompt is ready to use in your AI
+        tools — no hassle, no delays.</p>
 
-      <p>
-        <strong>• Completely Free:</strong> PromptHere survives thanks to small ads, so you can access
-        premium-quality prompts without paying a penny.
-      </p>
+      <p><strong>• Completely Free:</strong> PromptHere survives thanks to small ads, so you can access
+        premium-quality prompts without paying a penny.</p>
 
-      <p>
-        <strong>• Unique &amp; Practical:</strong> Unlike generic libraries, every prompt here is tested
-        for real-life utility, whether for productivity, learning, or creativity.
-      </p>
+      <p><strong>• Unique &amp; Practical:</strong> Unlike generic libraries, every prompt here is tested
+        for real-life utility, whether for productivity, learning, or creativity.</p>
 
       <p>
         Join thousands of users who are saving time and getting better AI results. PromptHere is designed
@@ -104,8 +115,6 @@
     <p>© <span id="year"></span> PromptHere</p>
   </footer>
 
-
-  <!-- Main site script -->
   <script src="script.js"></script>
 
 </body>
