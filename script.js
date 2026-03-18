@@ -41,9 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "Copy and use prompts instantly."
   ];
 
-  const heroElement = document.getElementById("hero-text");
-  const TYPING_SPEED  = 50;     // ms per character
-  const MESSAGE_DELAY = 2000;   // ms pause after each full message
+  const heroElement   = document.getElementById("hero-text");
+  const TYPING_SPEED  = 50;    // ms per character
+  const MESSAGE_DELAY = 2000;  // ms pause after each full message
 
   let heroIndex = 0;
   let charIndex = 0;
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ----------------------------
   // Popup — Show Only Once
   // ----------------------------
-  const popup        = document.getElementById("popup");
+  const popup         = document.getElementById("popup");
   const closePopupBtn = document.getElementById("close-popup");
 
   if (popup && closePopupBtn) {
@@ -115,11 +115,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = "";
   }
 
-  if (hamburgerBtn) hamburgerBtn.addEventListener("click", openDrawer);
-  if (drawerClose)  drawerClose.addEventListener("click", closeDrawer);
+  if (hamburgerBtn)  hamburgerBtn.addEventListener("click", openDrawer);
+  if (drawerClose)   drawerClose.addEventListener("click", closeDrawer);
   if (drawerOverlay) drawerOverlay.addEventListener("click", closeDrawer);
 
-  // Also close drawer when a nav link inside it is clicked
+  // Close drawer when any nav link inside it is clicked
   if (drawer) {
     drawer.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", closeDrawer);
@@ -185,15 +185,18 @@ if (promptGrid) {
       card.classList.add("prompt-card");
 
       // Escape single quotes in prompt text for inline onclick handler
-      const escapedPrompt = p.prompt.replace(/'/g, "\\'");
+      
 
+      // --- PREMIUM vs FREE card rendering ---
       card.innerHTML = `
         <h3>${p.title}</h3>
+        ${p.premium ? '<span class="premium-badge">⭐ Premium</span>' : ''}
         <p>${p.description}</p>
-        <pre>${p.prompt}</pre>
         <div class="prompt-buttons">
-          <button onclick="copyPrompt('${escapedPrompt}')">Copy</button>
-          <a href="prompt.html?slug=${p.slug}" class="view-btn">View</a>
+          ${p.premium
+            ? `<button class="unlock-btn" onclick="startUnlock('${p.slug}')">🔓 Unlock to View</button>`
+            : `<a href="prompt.html?slug=${p.slug}" class="view-btn">View</a>`
+          }
         </div>
       `;
 
@@ -214,15 +217,6 @@ if (promptGrid) {
   categorySelect.addEventListener("change", () => renderPrompts());
   loadMoreBtn.addEventListener("click",     () => renderPrompts(false));
 
-
-  // ----------------------------
-  // Copy Prompt to Clipboard
-  // ----------------------------
-  window.copyPrompt = function (text) {
-    navigator.clipboard.writeText(text).then(() => {
-      alert("Prompt copied!");
-    });
-  };
 
 }
 
@@ -261,3 +255,64 @@ async function loadBestPrompts() {
 }
 
 loadBestPrompts();
+
+
+// ============================================================
+// Premium Prompt Gate — Ad Countdown + One-Time Unlock
+// ============================================================
+
+function startUnlock(slug) {
+
+  // Fire the ad (add your HilltopAds trigger here when ready)
+  fireAd();
+
+  // Build the countdown overlay modal
+  const overlay = document.createElement("div");
+  overlay.classList.add("ad-overlay");
+
+  overlay.innerHTML = `
+    <div class="ad-modal">
+      <h3>Unlocking Prompt</h3>
+      <p>Please wait while the ad loads. You will be redirected automatically.</p>
+      <div class="ad-countdown" id="countdown-number">10</div>
+      <span class="ad-cancel" id="ad-cancel">Cancel</span>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  // Lock background scroll while modal is open
+  document.body.style.overflow = "hidden";
+
+  // Countdown from 10
+  let seconds = 10;
+  const countdownEl = document.getElementById("countdown-number");
+
+  const timer = setInterval(() => {
+    seconds--;
+    countdownEl.textContent = seconds;
+
+    if (seconds <= 0) {
+      clearInterval(timer);
+
+      // Save one-time unlock token then redirect to prompt page
+      sessionStorage.setItem("unlocked_" + slug, "true");
+      window.location.href = "prompt.html?slug=" + slug;
+    }
+  }, 1000);
+
+  // Cancel — close modal and stop timer
+  document.getElementById("ad-cancel").addEventListener("click", () => {
+    clearInterval(timer);
+    document.body.removeChild(overlay);
+    document.body.style.overflow = "";
+  });
+}
+
+
+// Placeholder — add your HilltopAds popunder trigger
+// inside this function when you get your account
+function fireAd() {
+  // TODO: add HilltopAds trigger here when ready
+  // Example: window.open("your-hilltopads-link", "_blank");
+}
