@@ -4,12 +4,13 @@
     "title": "Business Pivot Strategist",
     "description": "Generate a transition plan for shifting a business model.",
     "prompt": "Act as a senior business consultant. Analyze the current business model of [Company/Niche] and provide a step-by-step strategy to pivot into [New Market/Model], including a SWOT analysis.",
-    "category": "business",
+    "category": "Business",
     "subcategory": "strategy",
     "tags": ["entrepreneurship", "pivot", "growth"],
     "slug": "business-pivot-strategist",
     "date": "2026-03-15",
-    "featured": true
+    "featured": true,
+    "premium": true
   },
   {
     "id": 3,
@@ -21,7 +22,8 @@
     "tags": ["philosophy", "analysis", "debate"],
     "slug": "logical-fallacy-detector",
     "date": "2026-03-15",
-    "featured": true
+    "featured": true,
+    "premium": true
   },
   {
     "id": 4,
@@ -33,7 +35,8 @@
     "tags": ["startup", "launch", "marketing"],
     "slug": "product-launch-roadmap",
     "date": "2026-03-15",
-    "featured": true
+    "featured": true,
+    "premium": true
   },
   {
     "id": 5,
@@ -45,7 +48,8 @@
     "tags": ["education", "learning", "active-recall"],
     "slug": "socratic-tutor",
     "date": "2026-03-15",
-    "featured": true
+    "featured": true,
+    "premium": true
   },
   {
     "id": 6,
@@ -57,7 +61,8 @@
     "tags": ["fitness", "nutrition", "organization"],
     "slug": "meal-prep-macro-planner",
     "date": "2026-03-15",
-    "featured": false
+    "featured": false,
+    "premium": true
   },
   {
     "id": 7,
