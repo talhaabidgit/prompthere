@@ -87,14 +87,28 @@
     const slug   = params.get("slug");
 
     fetch("data/prompts.json")
-      .then(res => res.json())
-      .then(data => {
-        const prompt = data.find(p => p.slug === slug);
+  .then(res => res.json())
+  .then(data => {
+    const prompt = data.find(p => p.slug === slug);
 
-        if (!prompt) {
-          document.getElementById("prompt-title").textContent = "Prompt not found.";
-          return;
-        }
+    if (!prompt) {
+      document.getElementById("prompt-title").textContent = "Prompt not found.";
+      return;
+    }
+
+    // Premium gate check
+    if (prompt.premium) {
+      const key = "unlocked_" + slug;
+
+      if (!sessionStorage.getItem(key)) {
+        // No unlock token — send back to prompts page
+        window.location.href = "prompts.html";
+        return;
+      }
+
+      // Token found — consume it immediately so it can't be reused
+      sessionStorage.removeItem(key);
+    }
 
         document.getElementById("prompt-title").textContent       = prompt.title;
         document.getElementById("prompt-description").textContent = prompt.description;
