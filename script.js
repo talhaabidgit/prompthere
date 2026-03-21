@@ -41,13 +41,14 @@ document.addEventListener("DOMContentLoaded", () => {
     "Copy and use prompts instantly."
   ];
 
-  const heroElement   = document.getElementById("hero-text");
-  const TYPING_SPEED  = 50;    // ms per character
-  const MESSAGE_DELAY = 2000;  // ms pause after each full message
+  const heroElement = document.getElementById("hero-text");
+  const TYPING_SPEED = 50;    // ms per character
+  const MESSAGE_DELAY = 2000; // ms pause after each full message
 
   let heroIndex = 0;
   let charIndex = 0;
 
+  // Types out hero messages one character at a time, cycling through all messages
   function typeHeroMessage() {
     // Loop back to the first message when all are done
     if (heroIndex >= heroMessages.length) heroIndex = 0;
@@ -77,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ----------------------------
   // Popup — Show Only Once
   // ----------------------------
-  const popup         = document.getElementById("popup");
+  const popup = document.getElementById("popup");
   const closePopupBtn = document.getElementById("close-popup");
 
   if (popup && closePopupBtn) {
@@ -96,27 +97,27 @@ document.addEventListener("DOMContentLoaded", () => {
   // ----------------------------
   // Mobile Hamburger Drawer
   // ----------------------------
-  const hamburgerBtn  = document.getElementById("hamburger");
-  const drawer        = document.getElementById("drawer");
+  const hamburgerBtn = document.getElementById("hamburger");
+  const drawer = document.getElementById("drawer");
   const drawerOverlay = document.getElementById("drawer-overlay");
-  const drawerClose   = document.getElementById("drawer-close");
+  const drawerClose = document.getElementById("drawer-close");
 
-  // Open drawer
+  // Open the mobile navigation drawer
   function openDrawer() {
     drawer.classList.add("open");
     drawerOverlay.classList.add("open");
     document.body.style.overflow = "hidden"; // prevent background scroll
   }
 
-  // Close drawer
+  // Close the mobile navigation drawer
   function closeDrawer() {
     drawer.classList.remove("open");
     drawerOverlay.classList.remove("open");
     document.body.style.overflow = "";
   }
 
-  if (hamburgerBtn)  hamburgerBtn.addEventListener("click", openDrawer);
-  if (drawerClose)   drawerClose.addEventListener("click", closeDrawer);
+  if (hamburgerBtn) hamburgerBtn.addEventListener("click", openDrawer);
+  if (drawerClose) drawerClose.addEventListener("click", closeDrawer);
   if (drawerOverlay) drawerOverlay.addEventListener("click", closeDrawer);
 
   // Close drawer when any nav link inside it is clicked
@@ -137,27 +138,31 @@ const promptGrid = document.getElementById("prompt-grid");
 
 if (promptGrid) {
 
-  const searchInput    = document.getElementById("search");
+  const searchInput = document.getElementById("search");
   const categorySelect = document.getElementById("category");
-  const loadMoreBtn    = document.getElementById("load-more");
+  const loadMoreBtn = document.getElementById("load-more");
 
-  let prompts      = [];
+  let prompts = [];
   let currentIndex = 0;
-  const PAGE_SIZE  = 10;
-
+  const PAGE_SIZE = 10;
 
   // Load prompts from JSON file
-  fetch("data/prompts.json")
-    .then(res => res.json())
-    .then(data => {
-      prompts = data;
-      renderPrompts();
-    });
+fetch("data/prompts.json")
+  .then(res => res.json())
+  .then(data => {
+    prompts = data;
+    renderPrompts();
+  })
+  .catch(() => {
+    promptGrid.innerHTML = "<p>Failed to load prompts. Please try again later.</p>";
+  });
 
 
   // ----------------------------
   // Render Prompt Cards
   // ----------------------------
+  // Renders a paginated, filtered list of prompt cards into the grid.
+  // Pass reset=false to append the next page instead of restarting.
   function renderPrompts(reset = true) {
 
     // Reset grid and index on new search/filter
@@ -166,33 +171,39 @@ if (promptGrid) {
       currentIndex = 0;
     }
 
-    const searchValue      = searchInput.value.toLowerCase();
+    const searchValue = searchInput.value.toLowerCase();
     const selectedCategory = categorySelect.value;
 
     // Filter by search text and selected category
-    const filtered = prompts.filter(p =>
-      (p.title.toLowerCase().includes(searchValue) ||
-       p.description.toLowerCase().includes(searchValue)) &&
-      (selectedCategory === "" || p.category === selectedCategory)
-    );
+    const filtered = prompts.filter(p => {
+      const inTitle = p.title.toLowerCase().includes(searchValue);
+      const inDescription = p.description.toLowerCase().includes(searchValue);
+      const inKeywords = p.keywords
+        ? p.keywords.some(k => k.toLowerCase().includes(searchValue))
+        : false;
+
+      const matchesSearch = inTitle || inDescription || inKeywords;
+      const matchesCategory = selectedCategory === "" || p.category === selectedCategory;
+
+      return matchesSearch && matchesCategory;
+    });
 
     // Get the current page slice
     const slice = filtered.slice(currentIndex, currentIndex + PAGE_SIZE);
 
-    // Create and append a card for each prompt
+    // Create and append a card for each prompt in the current slice
     slice.forEach(p => {
       const card = document.createElement("div");
       card.classList.add("prompt-card");
 
-      // Escape single quotes in prompt text for inline onclick handler
-      
-
-      // --- PREMIUM vs FREE card rendering ---
+      // Render premium badge and unlock button for premium prompts,
+      // or a direct view link for free prompts
       card.innerHTML = `
         <h3>${p.title}</h3>
         ${p.premium ? '<span class="premium-badge">⭐ Premium</span>' : ''}
         <p>${p.description}</p>
         <div class="prompt-buttons">
+          <span class="prompt-date">${new Date(p.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</span>
           ${p.premium
             ? `<button class="unlock-btn" onclick="startUnlock('${p.slug}')">🔓 Unlock to View</button>`
             : `<a href="prompt.html?slug=${p.slug}" class="view-btn">View</a>`
@@ -205,7 +216,7 @@ if (promptGrid) {
 
     currentIndex += PAGE_SIZE;
 
-    // Hide "Load More" if all prompts are shown
+    // Hide "Load More" if all matching prompts are already shown
     loadMoreBtn.style.display = currentIndex >= filtered.length ? "none" : "block";
   }
 
@@ -213,10 +224,9 @@ if (promptGrid) {
   // ----------------------------
   // Event Listeners
   // ----------------------------
-  searchInput.addEventListener("input",     () => renderPrompts());
+  searchInput.addEventListener("input", () => renderPrompts());
   categorySelect.addEventListener("change", () => renderPrompts());
-  loadMoreBtn.addEventListener("click",     () => renderPrompts(false));
-
+  loadMoreBtn.addEventListener("click", () => renderPrompts(false));
 
 }
 
@@ -225,13 +235,20 @@ if (promptGrid) {
 // Best / Featured Prompts (Homepage Section)
 // ============================================================
 
+// Fetches prompts marked as featured and renders up to 5 cards
+// in the bestPrompts container on the homepage
 async function loadBestPrompts() {
 
   const bestContainer = document.getElementById("bestPrompts");
   if (!bestContainer) return; // Exit if section doesn't exist on this page
 
+  let prompts;
+try {
   const response = await fetch("data/prompts.json");
-  const prompts  = await response.json();
+  prompts = await response.json();
+} catch {
+  return; // silently fail on homepage — no grid to show error in
+}
 
   // Get up to 5 featured prompts
   const featuredPrompts = prompts
@@ -261,6 +278,9 @@ loadBestPrompts();
 // Premium Prompt Gate — Ad Countdown + One-Time Unlock
 // ============================================================
 
+// Starts the premium unlock flow: fires an ad, shows a 10-second
+// countdown modal, then saves a one-time session token and redirects
+// to the prompt page
 function startUnlock(slug) {
 
   // Fire the ad (add your HilltopAds trigger here when ready)
@@ -284,7 +304,7 @@ function startUnlock(slug) {
   // Lock background scroll while modal is open
   document.body.style.overflow = "hidden";
 
-  // Countdown from 10
+  // Countdown from 10 seconds
   let seconds = 10;
   const countdownEl = document.getElementById("countdown-number");
 
@@ -295,13 +315,13 @@ function startUnlock(slug) {
     if (seconds <= 0) {
       clearInterval(timer);
 
-      // Save one-time unlock token then redirect to prompt page
+      // Save one-time unlock token then redirect to the prompt page
       sessionStorage.setItem("unlocked_" + slug, "true");
       window.location.href = "prompt.html?slug=" + slug;
     }
   }, 1000);
 
-  // Cancel — close modal and stop timer
+  // Cancel button — close modal and stop the countdown timer
   document.getElementById("ad-cancel").addEventListener("click", () => {
     clearInterval(timer);
     document.body.removeChild(overlay);
@@ -310,9 +330,9 @@ function startUnlock(slug) {
 }
 
 
-// Placeholder — add your HilltopAds popunder trigger
-// inside this function when you get your account
+// Placeholder — fires the ad network trigger when a premium prompt is unlocked
+// TODO: add HilltopAds trigger here when your account is ready
+// Example: window.open("your-hilltopads-link", "_blank");
 function fireAd() {
-  // TODO: add HilltopAds trigger here when ready
-  // Example: window.open("your-hilltopads-link", "_blank");
+  // Implementation pending HilltopAds account setup
 }
