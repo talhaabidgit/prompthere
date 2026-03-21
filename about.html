@@ -1,121 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About - PromptHere</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About - PromptHere</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  </head>
+  <body>
 
-  <!-- ==============================
-       Header / Navigation
-  ============================== -->
-  <header class="header">
-    <div class="container nav">
+    <!-- ==============================
+         Header / Navigation
+    ============================== -->
+    <header class="header">
+      <div class="container nav">
 
-      <div class="logo">
-        <a href="index.html">PromptHere</a>
+        <!-- Logo -->
+        <div class="logo">
+          <a href="index.html">PromptHere</a>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="desktop-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="prompts.html">Prompts</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="terms&services.html">Terms &amp; Services</a></li>
+          </ul>
+        </nav>
+
+        <!-- Right Side: Theme Toggle + Hamburger -->
+        <div class="nav-right">
+
+          <!-- Theme Toggle (visible on both desktop and mobile) -->
+          <label class="theme-toggle">
+            <i class="fa-solid fa-sun"></i>
+            <input type="checkbox" id="theme-toggle">
+            <i class="fa-solid fa-moon"></i>
+          </label>
+
+          <!-- Hamburger Button (mobile only) -->
+          <button class="hamburger" id="hamburger" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+        </div>
       </div>
+    </header>
 
-      <nav class="desktop-nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="prompts.html">Prompts</a></li>
-          <li><a href="about.html" class="active">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="terms&services.html">Terms &amp; Services</a></li>
-        </ul>
-      </nav>
+    <!-- ==============================
+         Mobile Slide-in Drawer
+    ============================== -->
+    <!-- Overlay backdrop for drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
 
-      <div class="nav-right">
-        <label class="theme-toggle">
-          <i class="fa-solid fa-sun"></i>
-          <input type="checkbox" id="theme-toggle">
-          <i class="fa-solid fa-moon"></i>
-        </label>
-        <button class="hamburger" id="hamburger" aria-label="Open menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+    <!-- Slide-in navigation drawer for mobile -->
+    <nav class="drawer" id="drawer">
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="prompts.html">Prompts</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="terms&services.html">Terms &amp; Services</a></li>
+      </ul>
+    </nav>
+
+    <!-- ==============================
+         About Section
+    ============================== -->
+    <section class="page">
+      <div class="container small">
+
+        <h1>About PromptHere</h1>
+
+        <!-- Introduction -->
+        <p>
+          Welcome to <strong>PromptHere</strong>, the ultimate platform to explore, copy, and use AI prompts
+          instantly — no accounts, no subscriptions, just pure productivity.
+        </p>
+
+        <!-- Feature highlights -->
+        <p><strong>Why Choose PromptHere?</strong></p>
+
+        <p><strong>• Instant Access:</strong> Access thousands of ready-to-use prompts for ChatGPT, coding,
+          marketing, writing, business, and more — all in one place.</p>
+
+        <p><strong>• No Sign-Up Required:</strong> Jump straight into generating ideas without creating an
+          account. Come and use — simplicity at its best!</p>
+
+        <p><strong>• Curated Quality:</strong> Every prompt is carefully curated to ensure it gives you
+          meaningful and actionable results.</p>
+
+        <p><strong>• Multiple Categories:</strong> Organize your work efficiently using categories like study,
+          image editing, business, planning, roadmap, strategy, and other trending niches.</p>
+
+        <p><strong>• Copy &amp; Use Instantly:</strong> One click and the prompt is ready to use in your AI
+          tools — no hassle, no delays.</p>
+
+        <p><strong>• Completely Free:</strong> PromptHere survives thanks to small ads, so you can access
+          premium-quality prompts without paying a penny.</p>
+
+        <p><strong>• Unique &amp; Practical:</strong> Unlike generic libraries, every prompt here is tested
+          for real-life utility, whether for productivity, learning, or creativity.</p>
+
+        <!-- Closing statement -->
+        <p>
+          Join thousands of users who are saving time and getting better AI results. PromptHere is designed
+          to make AI accessible, easy, and effective for everyone.
+        </p>
+
+        <!-- Ads disclosure note -->
+        <div class="ads-note">
+          Small ads keep PromptHere alive and allow us to keep all prompts free.
+        </div>
+
       </div>
+    </section>
 
-    </div>
-  </header>
+    <!-- ==============================
+         Footer
+    ============================== -->
+    <footer class="footer">
+      <!-- Year is dynamically set via script.js -->
+      <p>© <span id="year"></span> PromptHere</p>
+    </footer>
 
-  <!-- Mobile Drawer -->
-  <div class="drawer-overlay" id="drawer-overlay"></div>
-  <nav class="drawer" id="drawer">
-    <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="prompts.html">Prompts</a></li>
-      <li><a href="about.html" class="active">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="terms&services.html">Terms &amp; Services</a></li>
-    </ul>
-  </nav>
+    <script src="script.js"></script>
 
-
-  <!-- ==============================
-       About Section
-  ============================== -->
-  <section class="page">
-    <div class="container small">
-
-      <h1>About PromptHere</h1>
-
-      <p>
-        Welcome to <strong>PromptHere</strong>, the ultimate platform to explore, copy, and use AI prompts
-        instantly — no accounts, no subscriptions, just pure productivity.
-      </p>
-
-      <p><strong>Why Choose PromptHere?</strong></p>
-
-      <p><strong>• Instant Access:</strong> Access thousands of ready-to-use prompts for ChatGPT, coding,
-        marketing, writing, business, and more — all in one place.</p>
-
-      <p><strong>• No Sign-Up Required:</strong> Jump straight into generating ideas without creating an
-        account. Come and use — simplicity at its best!</p>
-
-      <p><strong>• Curated Quality:</strong> Every prompt is carefully curated to ensure it gives you
-        meaningful and actionable results.</p>
-
-      <p><strong>• Multiple Categories:</strong> Organize your work efficiently using categories like study,
-        image editing, business, planning, roadmap, strategy, and other trending niches.</p>
-
-      <p><strong>• Copy &amp; Use Instantly:</strong> One click and the prompt is ready to use in your AI
-        tools — no hassle, no delays.</p>
-
-      <p><strong>• Completely Free:</strong> PromptHere survives thanks to small ads, so you can access
-        premium-quality prompts without paying a penny.</p>
-
-      <p><strong>• Unique &amp; Practical:</strong> Unlike generic libraries, every prompt here is tested
-        for real-life utility, whether for productivity, learning, or creativity.</p>
-
-      <p>
-        Join thousands of users who are saving time and getting better AI results. PromptHere is designed
-        to make AI accessible, easy, and effective for everyone.
-      </p>
-
-      <div class="ads-note">
-        Small ads keep PromptHere alive and allow us to keep all prompts free.
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- ==============================
-       Footer
-  ============================== -->
-  <footer class="footer">
-    <p>© <span id="year"></span> PromptHere</p>
-  </footer>
-
-  <script src="script.js"></script>
-
-</body>
+  </body>
 </html>
