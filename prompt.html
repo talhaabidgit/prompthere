@@ -1,125 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Prompt - PromptHere</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prompt - PromptHere</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  </head>
+  <body>
 
-  <!-- ==============================
-       Header / Navigation
-  ============================== -->
-  <header class="header">
-    <div class="container nav">
+    <!-- ==============================
+         Header / Navigation
+    ============================== -->
+    <header class="header">
+      <div class="container nav">
 
-      <div class="logo">
-        <a href="index.html">PromptHere</a>
+        <!-- Logo -->
+        <div class="logo">
+          <a href="index.html">PromptHere</a>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="desktop-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="prompts.html">Prompts</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="terms&services.html">Terms &amp; Services</a></li>
+          </ul>
+        </nav>
+
+        <!-- Right Side: Theme Toggle + Hamburger -->
+        <div class="nav-right">
+
+          <!-- Theme Toggle (visible on both desktop and mobile) -->
+          <label class="theme-toggle">
+            <i class="fa-solid fa-sun"></i>
+            <input type="checkbox" id="theme-toggle">
+            <i class="fa-solid fa-moon"></i>
+          </label>
+
+          <!-- Hamburger Button (mobile only) -->
+          <button class="hamburger" id="hamburger" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+        </div>
       </div>
+    </header>
 
-      <nav class="desktop-nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="prompts.html">Prompts</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="terms&services.html">Terms &amp; Services</a></li>
-        </ul>
-      </nav>
+    <!-- ==============================
+         Mobile Slide-in Drawer
+    ============================== -->
+    <!-- Overlay backdrop for drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
 
-      <div class="nav-right">
-        <label class="theme-toggle">
-          <i class="fa-solid fa-sun"></i>
-          <input type="checkbox" id="theme-toggle">
-          <i class="fa-solid fa-moon"></i>
-        </label>
-        <button class="hamburger" id="hamburger" aria-label="Open menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+    <!-- Slide-in navigation drawer for mobile -->
+    <nav class="drawer" id="drawer">
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="prompts.html">Prompts</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="terms&services.html">Terms &amp; Services</a></li>
+      </ul>
+    </nav>
+
+    <!-- ==============================
+         Prompt Detail Section
+    ============================== -->
+    <section class="page">
+      <div class="container small">
+        <!-- Prompt metadata and content — dynamically populated via inline script below -->
+        <span id="prompt-id"></span>
+        <h1 id="prompt-title"></h1>
+        <p id="prompt-description"></p>
+        <span id="prompt-date"></span>
+        <pre id="prompt-text"></pre>
+        <button id="copy-btn">Copy Prompt</button>
       </div>
+    </section>
 
-    </div>
-  </header>
+    <!-- ==============================
+         Footer
+    ============================== -->
+    <footer class="footer">
+      <!-- Year is dynamically set via script.js -->
+      <p>© <span id="year"></span> PromptHere</p>
+    </footer>
 
-  <!-- Mobile Drawer -->
-  <div class="drawer-overlay" id="drawer-overlay"></div>
-  <nav class="drawer" id="drawer">
-    <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="prompts.html">Prompts</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="terms&services.html">Terms &amp; Services</a></li>
-    </ul>
-  </nav>
+    <script src="script.js"></script>
 
+    <!-- Prompt Detail Page Script:
+         Reads the "slug" query param, fetches the matching prompt from
+         prompts.json, enforces the premium gate, then renders all fields
+         and wires up the copy button. -->
+    <script>
+      // Read the slug from the URL query string
+      const params = new URLSearchParams(window.location.search);
+      const slug = params.get("slug");
 
-  <!-- ==============================
-       Prompt Detail Section
-  ============================== -->
-  <section class="page">
-    <div class="container small">
-      <h1 id="prompt-title"></h1>
-      <p id="prompt-description"></p>
-      <pre id="prompt-text"></pre>
-      <button id="copy-btn">Copy Prompt</button>
-    </div>
-  </section>
+      // Fetch all prompts and find the one matching the current slug
+      fetch("data/prompts.json")
+        .then(res => res.json())
+        .then(data => {
+          const prompt = data.find(p => p.slug === slug);
 
+          // Show error message if no matching prompt is found
+          if (!prompt) {
+            document.getElementById("prompt-title").textContent = "Prompt not found.";
+            return;
+          }
 
-  <!-- ==============================
-       Footer
-  ============================== -->
-  <footer class="footer">
-    <p>© <span id="year"></span> PromptHere</p>
-  </footer>
+          // Premium gate check
+          if (prompt.premium) {
+            const key = "unlocked_" + slug;
 
-  <script src="script.js"></script>
+            // No unlock token — redirect back to prompts page
+            if (!sessionStorage.getItem(key)) {
+              window.location.href = "prompts.html";
+              return;
+            }
 
-  <!-- Prompt detail page script -->
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const slug   = params.get("slug");
+            // Token found — consume it immediately so it cannot be reused
+            sessionStorage.removeItem(key);
+          }
 
-    fetch("data/prompts.json")
-  .then(res => res.json())
-  .then(data => {
-    const prompt = data.find(p => p.slug === slug);
+          // Populate prompt detail fields
+          document.getElementById("prompt-title").textContent = prompt.title;
+          document.getElementById("prompt-id").textContent = "ID: " + prompt.id;
+          document.getElementById("prompt-description").textContent = prompt.description;
+          document.getElementById("prompt-text").textContent = prompt.prompt;
+          document.getElementById("prompt-date").textContent =
+            "📅 Published: " + new Date(prompt.date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "short",
+              day: "numeric"
+            });
 
-    if (!prompt) {
-      document.getElementById("prompt-title").textContent = "Prompt not found.";
-      return;
-    }
-
-    // Premium gate check
-    if (prompt.premium) {
-      const key = "unlocked_" + slug;
-
-      if (!sessionStorage.getItem(key)) {
-        // No unlock token — send back to prompts page
-        window.location.href = "prompts.html";
-        return;
-      }
-
-      // Token found — consume it immediately so it can't be reused
-      sessionStorage.removeItem(key);
-    }
-
-        document.getElementById("prompt-title").textContent       = prompt.title;
-        document.getElementById("prompt-description").textContent = prompt.description;
-        document.getElementById("prompt-text").textContent        = prompt.prompt;
-
-        document.getElementById("copy-btn").addEventListener("click", () => {
-          navigator.clipboard.writeText(prompt.prompt);
-          alert("Prompt copied!");
+          // Copy button: writes the prompt text to clipboard on click
+          document.getElementById("copy-btn").addEventListener("click", () => {
+            navigator.clipboard.writeText(prompt.prompt);
+            alert("Prompt copied!");
+          });
         });
-      });
-  </script>
+    </script>
 
-</body>
+  </body>
 </html>
