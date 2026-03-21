@@ -1,107 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact - PromptHere</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact - PromptHere</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  </head>
+  <body>
 
-  <!-- ==============================
-       Header / Navigation
-  ============================== -->
-  <header class="header">
-    <div class="container nav">
+    <!-- ==============================
+         Header / Navigation
+    ============================== -->
+    <header class="header">
+      <div class="container nav">
 
-      <div class="logo">
-        <a href="index.html">PromptHere</a>
+        <!-- Logo -->
+        <div class="logo">
+          <a href="index.html">PromptHere</a>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="desktop-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="prompts.html">Prompts</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+            <li><a href="terms&services.html">Terms &amp; Services</a></li>
+          </ul>
+        </nav>
+
+        <!-- Right Side: Theme Toggle + Hamburger -->
+        <div class="nav-right">
+
+          <!-- Theme Toggle (visible on both desktop and mobile) -->
+          <label class="theme-toggle">
+            <i class="fa-solid fa-sun"></i>
+            <input type="checkbox" id="theme-toggle">
+            <i class="fa-solid fa-moon"></i>
+          </label>
+
+          <!-- Hamburger Button (mobile only) -->
+          <button class="hamburger" id="hamburger" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+        </div>
       </div>
+    </header>
 
-      <nav class="desktop-nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="prompts.html">Prompts</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html" class="active">Contact</a></li>
-          <li><a href="terms&services.html">Terms &amp; Services</a></li>
-        </ul>
-      </nav>
+    <!-- ==============================
+         Mobile Slide-in Drawer
+    ============================== -->
+    <!-- Overlay backdrop for drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
 
-      <div class="nav-right">
-        <label class="theme-toggle">
-          <i class="fa-solid fa-sun"></i>
-          <input type="checkbox" id="theme-toggle">
-          <i class="fa-solid fa-moon"></i>
-        </label>
-        <button class="hamburger" id="hamburger" aria-label="Open menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-
-    </div>
-  </header>
-
-  <!-- Mobile Drawer -->
-  <div class="drawer-overlay" id="drawer-overlay"></div>
-  <nav class="drawer" id="drawer">
-    <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="prompts.html">Prompts</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html" class="active">Contact</a></li>
-      <li><a href="terms&services.html">Terms &amp; Services</a></li>
-    </ul>
-  </nav>
-
-
-  <!-- ==============================
-       Contact Section
-  ============================== -->
-  <section class="page">
-    <div class="container small">
-
-      <h1>Contact PromptHere</h1>
-
-      <p>
-        Welcome! We are always happy to hear from our users. If you have questions, suggestions,
-        or feedback, feel free to reach out to us.
-      </p>
-
-      <p><strong>• Social Media:</strong> Connect with us on social platforms:</p>
-
+    <!-- Slide-in navigation drawer for mobile -->
+    <nav class="drawer" id="drawer">
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
       <ul>
-        <li><a href="https://www.facebook.com/profile.php?id=61587464677692" target="_blank">Facebook</a></li>
-        <li><a href="https://x.com/talhaabid_234" target="_blank">X (Twitter)</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="prompts.html">Prompts</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="terms&services.html">Terms &amp; Services</a></li>
       </ul>
+    </nav>
 
-      <p>We aim to respond as early as possible.</p>
+    <!-- ==============================
+         Contact Section
+    ============================== -->
+    <section class="page">
+      <div class="container small">
 
-      <p>
-        Your feedback helps us improve PromptHere and add more useful prompts for everyone.
-        We appreciate your support!
-      </p>
+        <h1>Contact PromptHere</h1>
 
-      <div class="ads-note">
-        Small ads keep PromptHere alive and free for everyone.
+        <!-- Introduction -->
+        <p>
+          Welcome! We are always happy to hear from our users. If you have questions, suggestions,
+          or feedback, feel free to reach out to us.
+        </p>
+
+        <!-- Social media contact links -->
+        <p><strong>• Social Media:</strong> Connect with us on social platforms:</p>
+        <ul>
+          <li><a href="https://www.facebook.com/profile.php?id=61587464677692" target="_blank">Facebook</a></li>
+          <li><a href="https://x.com/talhaabid_234" target="_blank">X (Twitter)</a></li>
+        </ul>
+
+        <!-- Response time note -->
+        <p>We aim to respond as early as possible.</p>
+
+        <!-- Closing statement -->
+        <p>
+          Your feedback helps us improve PromptHere and add more useful prompts for everyone.
+          We appreciate your support!
+        </p>
+
+        <!-- Ads disclosure note -->
+        <div class="ads-note">
+          Small ads keep PromptHere alive and free for everyone.
+        </div>
+
       </div>
+    </section>
 
-    </div>
-  </section>
+    <!-- ==============================
+         Footer
+    ============================== -->
+    <footer class="footer">
+      <!-- Year is dynamically set via script.js -->
+      <p>© <span id="year"></span> PromptHere</p>
+    </footer>
 
+    <script src="script.js"></script>
 
-  <!-- ==============================
-       Footer
-  ============================== -->
-  <footer class="footer">
-    <p>© <span id="year"></span> PromptHere</p>
-  </footer>
-
-  <script src="script.js"></script>
-
-</body>
+  </body>
 </html>
