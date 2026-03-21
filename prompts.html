@@ -1,108 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Prompts - PromptHere</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prompts - PromptHere</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  </head>
+  <body>
 
-  <!-- ==============================
-       Header / Navigation
-  ============================== -->
-  <header class="header">
-    <div class="container nav">
+    <!-- ==============================
+         Header / Navigation
+    ============================== -->
+    <header class="header">
+      <div class="container nav">
 
-      <div class="logo">
-        <a href="index.html">PromptHere</a>
+        <!-- Logo -->
+        <div class="logo">
+          <a href="index.html">PromptHere</a>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="desktop-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="prompts.html" class="active">Prompts</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="terms&services.html">Terms &amp; Services</a></li>
+          </ul>
+        </nav>
+
+        <!-- Right Side: Theme Toggle + Hamburger -->
+        <div class="nav-right">
+
+          <!-- Theme Toggle (visible on both desktop and mobile) -->
+          <label class="theme-toggle">
+            <i class="fa-solid fa-sun"></i>
+            <input type="checkbox" id="theme-toggle">
+            <i class="fa-solid fa-moon"></i>
+          </label>
+
+          <!-- Hamburger Button (mobile only) -->
+          <button class="hamburger" id="hamburger" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+        </div>
       </div>
+    </header>
 
-      <nav class="desktop-nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="prompts.html" class="active">Prompts</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="terms&services.html">Terms &amp; Services</a></li>
-        </ul>
-      </nav>
+    <!-- ==============================
+         Mobile Slide-in Drawer
+    ============================== -->
+    <!-- Overlay backdrop for drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
 
-      <div class="nav-right">
-        <label class="theme-toggle">
-          <i class="fa-solid fa-sun"></i>
-          <input type="checkbox" id="theme-toggle">
-          <i class="fa-solid fa-moon"></i>
-        </label>
-        <button class="hamburger" id="hamburger" aria-label="Open menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+    <!-- Slide-in navigation drawer for mobile -->
+    <nav class="drawer" id="drawer">
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="prompts.html" class="active">Prompts</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="terms&services.html">Terms &amp; Services</a></li>
+      </ul>
+    </nav>
+
+    <!-- ==============================
+         Prompt Library Section
+    ============================== -->
+    <section class="page">
+      <div class="container">
+
+        <h1>Prompt Library</h1>
+
+        <!-- Search Bar -->
+        <input id="search" placeholder="Search prompts...">
+
+        <!-- Category Filter Dropdown -->
+        <select id="category">
+          <option value="">All Categories</option>
+          <option value="Study">Study</option>
+          <option value="Image">Image Editing</option>
+          <option value="business">Business</option>
+          <option value="Market">Market</option>
+          <option value="Logic">Logic</option>
+          <!-- Uncommenting below options will add more filter categories -->
+          <!-- <option value="Analysis & Reporting">Analysis &amp; Reporting</option>
+          <option value="Information Synthesis">Information Synthesis</option>
+          <option value="Scheduling">Scheduling</option>
+          <option value="Writing Support">Writing Support</option> -->
+        </select>
+
+        <!-- Temporary notice: remove once real prompts are added -->
+        <h4 style="color: red;">All The Prompt Cards Are Temporary And Used For Testing Purpose Only !</h4>
+
+        <!-- Prompt Cards Grid (dynamically injected by script.js) -->
+        <div id="prompt-grid" class="prompt-grid"></div>
+
+        <!-- Load More Button (loads next batch of prompt cards) -->
+        <button id="load-more" class="load-more">Load More</button>
+
       </div>
+    </section>
 
-    </div>
-  </header>
+    <!-- ==============================
+         Footer
+    ============================== -->
+    <footer class="footer">
+      <!-- Year is dynamically set via script.js -->
+      <p>© <span id="year"></span> PromptHere</p>
+    </footer>
 
-  <!-- Mobile Drawer -->
-  <div class="drawer-overlay" id="drawer-overlay"></div>
-  <nav class="drawer" id="drawer">
-    <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="prompts.html" class="active">Prompts</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="terms&services.html">Terms &amp; Services</a></li>
-    </ul>
-  </nav>
+    <script src="script.js"></script>
 
-
-  <!-- ==============================
-       Prompt Library Section
-  ============================== -->
-  <section class="page">
-    <div class="container">
-
-      <h1>Prompt Library</h1>
-
-      <!-- Search Bar -->
-      <input id="search" placeholder="Search prompts...">
-
-      <!-- Category Filter -->
-      <select id="category">
-        <option value="">All Categories</option>
-        <option value="Study">Study</option>
-        <option value="Image">Image Editing</option>
-        <option value="business">Business</option>
-        <option value="Market">Market</option>
-        <option value="Logic">Logic</option>
-        <!-- <option value="Analysis & Reporting">Analysis &amp; Reporting</option>
-        <option value="Information Synthesis">Information Synthesis</option>
-        <option value="Scheduling">Scheduling</option>
-        <option value="Writing Support">Writing Support</option> -->
-      </select>
-
-      <h4 style="color: red;">All The Prompt Cards Are Temporary And Used For Testing Purpose Only !</h4>
-
-      <!-- Prompt Cards (injected by script.js) -->
-      <div id="prompt-grid" class="prompt-grid"></div>
-
-      <button id="load-more" class="load-more">Load More</button>
-
-    </div>
-  </section>
-
-
-  <!-- ==============================
-       Footer
-  ============================== -->
-  <footer class="footer">
-    <p>© <span id="year"></span> PromptHere</p>
-  </footer>
-
-  <script src="script.js"></script>
-
-</body>
+  </body>
 </html>
