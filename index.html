@@ -1,151 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PromptHere - Free AI Prompt Library</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PromptHere - Free AI Prompt Library</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  </head>
+  <body>
 
-  <!-- ==============================
-       Header / Navigation
-  ============================== -->
-  <header class="header">
-    <div class="container nav">
+    <!-- ==============================
+         Header / Navigation
+    ============================== -->
+    <header class="header">
+      <div class="container nav">
 
-      <!-- Logo -->
-      <div class="logo">
-        <a href="index.html">PromptHere <p style="color: red;">Beta-1.2</p></a>
-      </div>
-
-      <!-- Desktop Nav -->
-      <nav class="desktop-nav">
-        <ul>
-          <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="prompts.html">Prompts</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="terms&services.html">Terms &amp; Services</a></li>
-        </ul>
-      </nav>
-
-      <!-- Right side: Theme Toggle + Hamburger -->
-      <div class="nav-right">
-
-        <!-- Theme Toggle (visible on both) -->
-        <label class="theme-toggle">
-          <i class="fa-solid fa-sun"></i>
-          <input type="checkbox" id="theme-toggle">
-          <i class="fa-solid fa-moon"></i>
-        </label>
-
-        <!-- Hamburger Button (mobile only) -->
-        <button class="hamburger" id="hamburger" aria-label="Open menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-      </div>
-    </div>
-  </header>
-
-  <!-- ==============================
-       Mobile Slide-in Drawer
-  ============================== -->
-  <div class="drawer-overlay" id="drawer-overlay"></div>
-  <nav class="drawer" id="drawer">
-    <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
-    <ul>
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="prompts.html">Prompts</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="terms&services.html">Terms &amp; Services</a></li>
-    </ul>
-  </nav>
-
-
-  <!-- ==============================
-       Hero Section
-  ============================== -->
-  <section class="hero">
-    <div class="container hero-content">
-      <h1>The Ultimate Free AI Prompt Library</h1>
-      <p id="hero-text"></p>
-      <a href="prompts.html" class="btn">Explore Prompts</a>
-    </div>
-  </section>
-
-
-  <!-- ==============================
-       Info Popup
-  ============================== -->
-  <div id="popup" class="popup">
-    <div class="popup-content">
-      <span id="close-popup">&times;</span>
-      <p>Welcome! Small ads help keep PromptHere alive and free for everyone.</p>
-    </div>
-  </div>
-
-
-  <!-- ==============================
-       Features Section
-  ============================== -->
-  <section class="features">
-    <div class="container">
-      <h2 class="section-title">Why PromptHere?</h2>
-      <div class="cards">
-        <div class="card">
-          <i class="fa-solid fa-bolt"></i>
-          <h3>Instant Prompts</h3>
-          <p>Copy powerful prompts instantly and use them in your AI tools.</p>
+        <!-- Logo -->
+        <div class="logo">
+          <a href="index.html">PromptHere <p style="color: red;">Beta</p></a>
         </div>
-        <div class="card">
-          <i class="fa-solid fa-brain"></i>
-          <h3>High Quality</h3>
-          <p>All prompts are curated to generate better responses from AI.</p>
-        </div>
-        <div class="card">
-          <i class="fa-solid fa-copy"></i>
-          <h3>One Click Copy</h3>
-          <p>Copy prompts in one click and start using them immediately.</p>
-        </div>
-        <div class="card">
-          <i class="fa-solid fa-lock-open"></i>
-          <h3>100% Free</h3>
-          <p>All prompts are free. Small ads keep this project alive.</p>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="desktop-nav">
+          <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="prompts.html">Prompts</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="terms&services.html">Terms &amp; Services</a></li>
+          </ul>
+        </nav>
+
+        <!-- Right Side: Theme Toggle + Hamburger -->
+        <div class="nav-right">
+
+          <!-- Theme Toggle (visible on both desktop and mobile) -->
+          <label class="theme-toggle">
+            <i class="fa-solid fa-sun"></i>
+            <input type="checkbox" id="theme-toggle">
+            <i class="fa-solid fa-moon"></i>
+          </label>
+
+          <!-- Hamburger Button (mobile only) -->
+          <button class="hamburger" id="hamburger" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
         </div>
       </div>
+    </header>
+
+    <!-- ==============================
+         Mobile Slide-in Drawer
+    ============================== -->
+    <!-- Overlay backdrop for drawer -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+
+    <!-- Slide-in navigation drawer for mobile -->
+    <nav class="drawer" id="drawer">
+      <button class="drawer-close" id="drawer-close" aria-label="Close menu">&times;</button>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="prompts.html">Prompts</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="terms&services.html">Terms &amp; Services</a></li>
+      </ul>
+    </nav>
+
+    <!-- ==============================
+         Hero Section
+    ============================== -->
+    <section class="hero">
+      <div class="container hero-content">
+        <h1>The Ultimate Free AI Prompt Library</h1>
+        <!-- Hero text is dynamically populated via script.js -->
+        <p id="hero-text"></p>
+        <a href="prompts.html" class="btn">Explore Prompts</a>
+      </div>
+    </section>
+
+    <!-- ==============================
+         Info Popup
+    ============================== -->
+    <!-- Popup shown on first visit to inform users about ads -->
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <span id="close-popup">&times;</span>
+        <p>Welcome! Small ads help keep PromptHere alive and free for everyone.</p>
+      </div>
     </div>
-  </section>
 
+    <!-- ==============================
+         Features Section
+    ============================== -->
+    <section class="features">
+      <div class="container">
+        <h2 class="section-title">Why PromptHere?</h2>
+        <div class="cards">
 
-  <!-- ==============================
-       Best Prompts Section
-  ============================== -->
-  <section class="best-prompts">
-    <div class="container">
-      <h2>🔥 Best AI Prompts</h2>
-      <p>Top prompts loved by creators.</p>
-      <div id="bestPrompts" class="prompt-grid"></div>
-    </div>
-  </section>
+          <!-- Feature Card: Instant Prompts -->
+          <div class="card">
+            <i class="fa-solid fa-bolt"></i>
+            <h3>Instant Prompts</h3>
+            <p>Copy powerful prompts instantly and use them in your AI tools.</p>
+          </div>
 
+          <!-- Feature Card: High Quality -->
+          <div class="card">
+            <i class="fa-solid fa-brain"></i>
+            <h3>High Quality</h3>
+            <p>All prompts are curated to generate better responses from AI.</p>
+          </div>
 
-  <!-- ==============================
-       Footer
-  ============================== -->
-  <footer class="footer">
-    <div class="container footer-content">
-      <p>© <span id="year"></span> PromptHere</p>
-    </div>
-  </footer>
+          <!-- Feature Card: One Click Copy -->
+          <div class="card">
+            <i class="fa-solid fa-copy"></i>
+            <h3>One Click Copy</h3>
+            <p>Copy prompts in one click and start using them immediately.</p>
+          </div>
 
+          <!-- Feature Card: 100% Free -->
+          <div class="card">
+            <i class="fa-solid fa-lock-open"></i>
+            <h3>100% Free</h3>
+            <p>All prompts are free. Small ads keep this project alive.</p>
+          </div>
 
-  <script src="script.js"></script>
+        </div>
+      </div>
+    </section>
 
-</body>
+    <!-- ==============================
+         Best Prompts Section
+    ============================== -->
+    <section class="best-prompts">
+      <div class="container">
+        <h2>Best AI Prompts</h2>
+        <p>Top prompts loved by creators.</p>
+        <!-- Best prompts grid is dynamically populated via script.js -->
+        <div id="bestPrompts" class="prompt-grid"></div>
+      </div>
+    </section>
+
+    <!-- ==============================
+         Footer
+    ============================== -->
+    <footer class="footer">
+      <div class="container footer-content">
+
+        <!-- Brand name and copyright -->
+        <p class="footer-brand">PromptHere</p>
+        <!-- Year is dynamically set via script.js -->
+        <p class="footer-copy">© <span id="year"></span> PromptHere. All rights reserved.</p>
+
+        <!-- Site navigation links -->
+        <div class="footer-links">
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="terms&services.html">Terms &amp; Services</a>
+        </div>
+
+        <!-- Social media links -->
+        <div class="footer-social">
+          <a href="https://github.com/talhaabidgit" target="_blank" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61587464677692" target="_blank" aria-label="Facebook">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a href="https://x.com/talhaabid_234" target="_blank" aria-label="X / Twitter">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+        </div>
+
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+  </body>
 </html>
