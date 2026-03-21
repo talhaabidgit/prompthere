@@ -809,3 +809,49 @@ body {
   opacity: 0.6;
   margin-bottom: 10px;
 }
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 16px 0 0 20px;
+  padding: 7px 14px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: .3s;
+  text-decoration: none;
+}
+
+.back-btn:hover {
+  background: var(--card);
+  transform: translateX(-3px);
+}
+
+@media (max-width: 768px) {
+  .back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 16px 0 0 20px;
+  padding: 7px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: .3s;
+  text-decoration: none;
+  position: sticky;
+  top: 86px;
+  z-index: 999;
+}
+}
